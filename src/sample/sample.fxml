@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="1014.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <right>
+        <Pane prefHeight="512.0" prefWidth="284.0" BorderPane.alignment="CENTER">
+            <children>
+                <VBox layoutX="1.0" layoutY="33.0" prefHeight="241.0" prefWidth="139.0">
+                    <children>
+                        <JFXRadioButton text="mkv">
+                            <VBox.margin>
+                                <Insets left="10.0" top="20.0" />
+                            </VBox.margin>
+                            <toggleGroup>
+                                <ToggleGroup fx:id="group" />
+                            </toggleGroup>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="20.0" layoutY="30.0" text="mp4" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton text="avi" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton text="webm" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="20.0" layoutY="111.0" text="flv" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="128.0" text="mp3" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="145.0" text="gif" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="162.0" text="wmv" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                    </children>
+                </VBox>
+                <VBox layoutX="137.0" layoutY="31.0" prefHeight="241.0" prefWidth="139.0">
+                    <children>
+                        <JFXRadioButton text="m4a" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="20.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="20.0" layoutY="30.0" text="mp4" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton text="mpg" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton text="vob" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="20.0" layoutY="111.0" text="mov" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="128.0" text="3gp" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="145.0" text="m4v" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                        <JFXRadioButton layoutX="10.0" layoutY="162.0" text="webp" toggleGroup="$group">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXRadioButton>
+                    </children>
+                </VBox>
+                <Label layoutX="78.0" layoutY="7.0" text="Output Format" textFill="RED">
+                    <font>
+                        <Font name="System Italic" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="77.0" layoutY="280.0" text="Advanced Settings" textFill="RED">
+                    <font>
+                        <Font name="System Italic" size="16.0" />
+                    </font>
+                </Label>
+                <VBox layoutX="24.0" layoutY="343.0" prefHeight="155.0" prefWidth="100.0">
+                    <children>
+                        <Label text="Frame Rate">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" text="Height">
+                            <VBox.margin>
+                                <Insets left="10.0" top="23.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="27.0" text="Width">
+                            <VBox.margin>
+                                <Insets left="10.0" top="23.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label text="Preserve Ratio">
+                            <VBox.margin>
+                                <Insets left="10.0" top="23.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox layoutX="145.0" layoutY="346.0" prefHeight="152.0" prefWidth="120.0">
+                    <children>
+                        <Spinner fx:id="frameRate">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Spinner>
+                        <Spinner fx:id="height" layoutX="10.0" layoutY="20.0">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Spinner>
+                        <Spinner fx:id="width" layoutX="10.0" layoutY="45.0">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Spinner>
+                        <JFXCheckBox fx:id="presRatio" prefHeight="17.0" prefWidth="40.0" text=" ">
+                            <VBox.margin>
+                                <Insets top="23.0" />
+                            </VBox.margin>
+                        </JFXCheckBox>
+                    </children>
+                </VBox>
+                <JFXCheckBox fx:id="inputSetting" layoutX="65.0" layoutY="314.0" text="Use Input Settings" />
+                <JFXButton fx:id="convertBut" layoutX="84.0" layoutY="514.0" prefHeight="44.0" prefWidth="127.0" ripplerFill="#d3d3d3" style="-fx-background-color: #039BE5;" text="Convert">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </JFXButton>
+            </children>
+        </Pane>
+    </right>
+</BorderPane>

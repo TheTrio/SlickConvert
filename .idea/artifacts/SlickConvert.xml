@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="SlickConvert">
+    <output-path>$PROJECT_DIR$/out/artifacts/SlickConvert</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="SlickConvert" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="SlickConvert.jar">
+        <element id="module-output" name="SlickConvert" />
+      </element>
+      <element id="library" level="application" name="jfoenix" />
+    </root>
+  </artifact>
+</component>
