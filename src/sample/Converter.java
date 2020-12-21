@@ -32,11 +32,12 @@ public class Converter implements Runnable{
             while((s=b.readLine())!=null){
                 if(isTrue){
                     System.out.println("Quiting");
-
                     return;
                 }
+                System.out.println(s);
                 m = p.matcher(s);
                 if(m.find()){
+                    System.out.println("hello world");
                     percent = Integer.parseInt(m.group(1))* 3600 + Integer.parseInt(m.group(2))* 60+ Integer.parseInt(m.group(3));
                 }
                 Platform.runLater(()->{
