@@ -1,28 +1,39 @@
 package sample;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Converter implements Runnable{
 
-    private BufferedReader b;
-    private Pattern p;
+    private final BufferedReader b;
+    private final Pattern p;
     private Matcher m;
     public double percent = 0;
     private int duration = 0;
-    private ProgressBar progressBar;
+    private final ProgressBar progressBar;
     private boolean isTrue = false;
-    private String Item;
+    private final String Item;
+    private final Data data;
+    private final TableView<Data> tableView;
+    private final int totalDuration;
+    private final int doneBefore;
 
-    public Converter(BufferedReader b, Pattern p, Matcher m, int duration, ProgressBar progressBar, String Item) {
+    public Converter(BufferedReader b, Pattern p, int duration, ProgressBar progressBar, String Item, Data data, TableView<Data> tableView, int totalDuration, int doneBefore) {
         this.b = b;
         this.p = p;
-        this.m = m;
         this.duration = duration;
         this.progressBar = progressBar;
         this.Item = Item;
+        this.data = data;
+        this.tableView = tableView;
+        this.totalDuration = totalDuration;
+        this.doneBefore = doneBefore;
     }
 
     @Override
@@ -31,21 +42,20 @@ public class Converter implements Runnable{
         try {
             while((s=b.readLine())!=null){
                 if(isTrue){
-                    System.out.println("Quiting");
                     return;
                 }
-                System.out.println(s);
                 m = p.matcher(s);
                 if(m.find()){
-                    System.out.println("hello world");
                     percent = Integer.parseInt(m.group(1))* 3600 + Integer.parseInt(m.group(2))* 60+ Integer.parseInt(m.group(3));
+                    String output = String.format("%.2f", percent/duration*100);
+                    data.setDone(output + "% done");
+                    tableView.refresh();
                 }
                 Platform.runLater(()->{
-                    progressBar.setProgress(percent/duration);
+                    progressBar.setProgress((percent+doneBefore)/totalDuration);
                 });
             }
             System.out.println(Item + " completed");
-            //progressBar.getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
         }
