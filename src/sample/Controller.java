@@ -69,6 +69,8 @@ public class Controller implements Initializable {
     private HashMap<String, String> map;
     private ObservableList<Data> list;
     private MenuBar menuBar;
+    private TableView<Data> tableView;
+    public static boolean multipleThreads = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,7 +88,7 @@ public class Controller implements Initializable {
         } catch (Exception e) {
 
         }
-        TableView<Data> tableView = new TableView<>();
+        tableView = new TableView<>();
         bar.prefWidthProperty().bind(bp.widthProperty());
         //Name Column
         TableColumn<Data, String> nameColumn = new TableColumn<>("FileName");
@@ -270,46 +272,37 @@ public class Controller implements Initializable {
                                     BufferedReader b = new BufferedReader(new InputStreamReader(d.getErrorStream()));
                                     Pattern pattern = Pattern.compile("time=(\\d\\d):(\\d\\d):(\\d\\d)\\.\\d\\d");
                                     Converter c = new Converter(b, pattern,durationList.get(i), bar, ItemName, data, tableView, totalDuration.get(), doneBefore);
-
                                     Thread thread = new Thread(c);
                                     thread.start();
-                                    try {
-                                        thread.join();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                                    if(!multipleThreads) {
+                                        try {
+                                            thread.join();
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
-                                doneBefore += durationList.get(i);
+                                    doneBefore += durationList.get(i);
                                 }
-                                convertBut.setDisable(false);
-                                set.clear();
-                                map.clear();
-                                list.clear();
-                                group.selectToggle(null);
-                                bar.setProgress(0);
-                                tableView.refresh();
-                                SystemTray tray = SystemTray.getSystemTray();
-
-                                //If the icon is a file
-//                                Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
-                                //Alternative (if the icon is on the classpath):
-                                Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
-//
-                                TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
-//                                //Let the system resize the image if needed
-                                trayIcon.setImageAutoSize(true);
-                                //Set tooltip text for the tray icon
-                                trayIcon.setToolTip("SlickConverter");
-                                try {
-                                    tray.add(trayIcon);
-                                } catch (AWTException e) {
-                                    e.printStackTrace();
+                                if(!multipleThreads){
+                                    onConvertOver();
                                 }
-
-                                trayIcon.displayMessage("Yours files have been converted successfully", "Slick Converter", TrayIcon.MessageType.INFO);
                             }
                         });
                         backgroundThread.start();
-                        convertBut.setDisable(true);
+                        Thread progressBarThread  = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                System.out.println(Converter.noOfThreads);
+                                while(Converter.noOfThreads!=0){
+                                    bar.setProgress(Converter.durationDone/Converter.totalDuration);
+                                }
+                                System.out.println("Hello World!");
+                                onConvertOver();
+                            }
+                        });
+                        if(multipleThreads){
+                            progressBarThread.start();
+                        }
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -351,5 +344,32 @@ public class Controller implements Initializable {
         return getString(treeView.getParent()) + "/" + treeView.getValue();
     }
 
+    public void onConvertOver(){
+        convertBut.setDisable(false);
+        set.clear();
+        map.clear();
+        list.clear();
+        group.selectToggle(null);
+        bar.setProgress(0);
+        tableView.refresh();
+        SystemTray tray = SystemTray.getSystemTray();
 
+        //If the icon is a file
+//                                Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+        //Alternative (if the icon is on the classpath):
+        Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
+//
+        TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+//                                //Let the system resize the image if needed
+        trayIcon.setImageAutoSize(true);
+        //Set tooltip text for the tray icon
+        trayIcon.setToolTip("SlickConverter");
+        try {
+            tray.add(trayIcon);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+
+        trayIcon.displayMessage("Yours files have been converted successfully", "Slick Converter", TrayIcon.MessageType.INFO);
+    }
 }

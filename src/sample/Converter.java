@@ -19,8 +19,11 @@ public class Converter implements Runnable{
     private final String Item;
     private final Data data;
     private final TableView<Data> tableView;
-    private final int totalDuration;
+    public static int totalDuration;
     private final int doneBefore;
+    public static double durationDone = 0;
+    private double prevDuration;
+    public static int noOfThreads = -1;
 
     public Converter(BufferedReader b, Pattern p, int duration, ProgressBar progressBar, String Item, Data data, TableView<Data> tableView, int totalDuration, int doneBefore) {
         this.b = b;
@@ -30,8 +33,10 @@ public class Converter implements Runnable{
         this.Item = Item;
         this.data = data;
         this.tableView = tableView;
-        this.totalDuration = totalDuration;
+        Converter.totalDuration = totalDuration;
         this.doneBefore = doneBefore;
+        if(noOfThreads==-1) noOfThreads = 0;
+        Converter.noOfThreads++;
     }
 
     @Override
@@ -45,21 +50,29 @@ public class Converter implements Runnable{
                 m = p.matcher(s);
                 if(m.find()){
                     percent = Integer.parseInt(m.group(1))* 3600 + Integer.parseInt(m.group(2))* 60+ Integer.parseInt(m.group(3));
+                    durationDone += (percent-prevDuration);
+                    prevDuration = percent;
                     String output = String.format("%.2f", percent/duration*100);
                     data.setDone(output + "% done");
                     tableView.refresh();
                 }
-                Platform.runLater(()->{
-                    progressBar.setProgress((percent+doneBefore)/totalDuration);
-                });
+                if(!Controller.multipleThreads) {
+                    Platform.runLater(()->{
+                        progressBar.setProgress((percent+doneBefore)/totalDuration);
+                    });
+                }
             }
             System.out.println(Item + " completed");
+            noOfThreads--;
+            if(noOfThreads==0){
+                noOfThreads = -1;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void setTrue(boolean value){
-        isTrue = value;
+    public double getPercent(){
+        return percent;
     }
 }

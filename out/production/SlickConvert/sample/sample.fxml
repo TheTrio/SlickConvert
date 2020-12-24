@@ -72,7 +72,7 @@
                                 <Insets left="10.0" top="20.0" />
                             </VBox.margin>
                         </JFXRadioButton>
-                        <JFXRadioButton layoutX="20.0" layoutY="30.0" text="mp4" toggleGroup="$group">
+                        <JFXRadioButton layoutX="20.0" layoutY="30.0" text="flac" toggleGroup="$group">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
