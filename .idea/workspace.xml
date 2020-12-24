@@ -6,19 +6,38 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Adding option to rename files">
-      <change afterPath="$PROJECT_DIR$/src/sample/Settings.json" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added Settings.json and made multithreading possible">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TheTrio/Settings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TheTrio/SettingsReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Converter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/Converter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SlickConvert.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SlickConvert.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SlickConvert/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Converter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Data.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/FilePathTreeItem$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/FilePathTreeItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/folder-open.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SlickConvert/sample/text-x-generic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FilePathTreeItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/FilePathTreeItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/folder-open.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/folder-open.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/Window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/text-x-generic.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/TheTrio/text-x-generic.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,6 +307,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
@@ -295,13 +315,17 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/gson-2.8.6.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -311,6 +335,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Shashwat\Desktop\SlickConvert\src" />
       <recent name="C:\Users\Shashwat\Desktop\SlickConvert" />
       <recent name="C:\Users\Shashwat\Desktop\SlickConvert\out\production\SlickConvert" />
       <recent name="C:\Users\Shashwat\Desktop\SlickConvert\src\sample" />
@@ -416,12 +441,12 @@
       <method />
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <option name="MAIN_CLASS_NAME" value="TheTrio.Main" />
       <module name="SlickConvert" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="TheTrio.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -578,7 +603,9 @@
       <workItem from="1608628930567" duration="2585000" />
       <workItem from="1608657069112" duration="304000" />
       <workItem from="1608736342671" duration="3232000" />
-      <workItem from="1608793971396" duration="4252000" />
+      <workItem from="1608793971396" duration="4467000" />
+      <workItem from="1608816942955" duration="6991000" />
+      <workItem from="1608830157572" duration="5915000" />
     </task>
     <task id="LOCAL-00001" summary="Adding option to rename files">
       <created>1608794747871</created>
@@ -587,7 +614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608794747871</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Settings.json and made multithreading possible">
+      <created>1608798377064</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608798377064</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -650,7 +684,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding option to rename files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding option to rename files" />
+    <MESSAGE value="Added Settings.json and made multithreading possible" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Settings.json and made multithreading possible" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

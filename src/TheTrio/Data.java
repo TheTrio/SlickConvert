@@ -1,4 +1,4 @@
-package sample;
+package TheTrio;
 
 import javafx.scene.control.Toggle;
 

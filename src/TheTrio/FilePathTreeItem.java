@@ -1,4 +1,4 @@
-package sample;
+package TheTrio;
 
 import java.io.File;
 import javafx.collections.FXCollections;
@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 public class FilePathTreeItem extends TreeItem<String> {
     public static Image folderCollapseImage = new Image(ClassLoader.getSystemResourceAsStream("folder.png"));
