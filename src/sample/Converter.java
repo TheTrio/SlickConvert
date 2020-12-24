@@ -1,12 +1,10 @@
 package sample;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Converter implements Runnable{

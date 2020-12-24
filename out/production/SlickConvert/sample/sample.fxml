@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <right>
         <Pane prefHeight="512.0" prefWidth="284.0" BorderPane.alignment="CENTER">
             <children>
@@ -113,42 +114,13 @@
                         <Font name="System Italic" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="76.0" layoutY="298.0" text="Advanced Settings" textFill="RED">
+                <Label layoutX="76.0" layoutY="313.0" text="Advanced Settings" textFill="RED">
                     <font>
                         <Font name="System Italic" size="16.0" />
                     </font>
                 </Label>
-                <VBox layoutX="5.0" layoutY="360.0" prefHeight="158.0" prefWidth="121.0">
+                <VBox alignment="CENTER" layoutX="128.0" layoutY="449.0" prefHeight="152.0" prefWidth="120.0">
                     <children>
-                        <Label text="Frame Rate">
-                            <VBox.margin>
-                                <Insets left="10.0" top="10.0" />
-                            </VBox.margin>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="10.0" text="Height">
-                            <VBox.margin>
-                                <Insets left="10.0" top="23.0" />
-                            </VBox.margin>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="27.0" text="Width">
-                            <VBox.margin>
-                                <Insets left="10.0" top="23.0" />
-                            </VBox.margin>
-                        </Label>
-                        <Label prefHeight="21.0" prefWidth="152.0" text="Preserve Ratio">
-                            <VBox.margin>
-                                <Insets left="10.0" top="23.0" />
-                            </VBox.margin>
-                        </Label>
-                    </children>
-                </VBox>
-                <VBox alignment="CENTER" layoutX="147.0" layoutY="356.0" prefHeight="152.0" prefWidth="120.0">
-                    <children>
-                        <Spinner fx:id="frameRate" editable="true">
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </Spinner>
                         <Spinner fx:id="height" editable="true" layoutX="10.0" layoutY="20.0">
                             <VBox.margin>
                                 <Insets top="10.0" />
@@ -159,23 +131,50 @@
                                 <Insets top="10.0" />
                             </VBox.margin>
                         </Spinner>
-                        <JFXCheckBox fx:id="presRatio" prefHeight="21.0" prefWidth="7.0" text=" ">
-                            <VBox.margin>
-                                <Insets top="23.0" />
-                            </VBox.margin>
-                        </JFXCheckBox>
                     </children>
                 </VBox>
-                <JFXCheckBox fx:id="inputSetting" layoutX="66.0" layoutY="335.0" text="Use Input Settings" />
-                <JFXButton fx:id="convertBut" layoutX="103.0" layoutY="537.0" prefHeight="37.0" prefWidth="110.0" ripplerFill="#d3d3d3" style="-fx-background-color: #039BE5;" text="Convert">
+                <JFXCheckBox fx:id="inputSetting" layoutX="66.0" layoutY="359.0" text="Use Input Settings" />
+                <JFXButton fx:id="convertBut" layoutX="86.0" layoutY="631.0" prefHeight="37.0" prefWidth="110.0" ripplerFill="#d3d3d3" style="-fx-background-color: #039BE5;" text="Convert">
                     <font>
                         <Font size="20.0" />
                     </font>
                 </JFXButton>
+                  <Label layoutX="15.0" layoutY="580.0" prefHeight="21.0" prefWidth="97.0" text="Preserve Ratio" />
+                  <JFXCheckBox fx:id="presRatio" layoutX="171.0" layoutY="579.0" prefHeight="21.0" prefWidth="12.0" text=" " />
+                  <Label layoutX="34.0" layoutY="541.0" text="Width" />
+                  <Label layoutX="32.0" layoutY="500.0" text="Height" />
+            <JFXTextField fx:id="startHour" layoutX="125.0" layoutY="387.0" prefHeight="31.0" prefWidth="34.0" />
+            <Label layoutX="163.0" layoutY="394.0" text=":">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="startMin" layoutX="170.0" layoutY="387.0" prefHeight="31.0" prefWidth="34.0" />
+            <Label layoutX="205.0" layoutY="394.0" text=":">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="startSec" layoutX="215.0" layoutY="387.0" prefHeight="31.0" prefWidth="34.0" />
+            <JFXTextField fx:id="endHour" layoutX="125.0" layoutY="432.0" prefHeight="31.0" prefWidth="34.0" />
+            <Label layoutX="163.0" layoutY="439.0" text=":">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="endMin" layoutX="170.0" layoutY="432.0" prefHeight="31.0" prefWidth="34.0" />
+            <Label layoutX="205.0" layoutY="439.0" text=":">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="endSec" layoutX="215.0" layoutY="432.0" prefHeight="31.0" prefWidth="34.0" />
+            <Label layoutX="29.0" layoutY="400.0" text="Start Time" />
+            <Label layoutX="32.0" layoutY="448.0" text="End Time" />
             </children>
         </Pane>
     </right>
    <bottom>
-      <ProgressBar fx:id="bar" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="1056.0" progress="0.0" BorderPane.alignment="CENTER" />
+      <ProgressBar fx:id="bar" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="1039.0" progress="0.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

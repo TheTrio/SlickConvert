@@ -11,11 +11,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +29,7 @@ import java.net.URL;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,9 +49,6 @@ public class Controller implements Initializable {
     private ToggleGroup group;
 
     @FXML
-    private Spinner<Integer> frameRate;
-
-    @FXML
     private Spinner<Integer> height;
 
     @FXML
@@ -62,14 +64,20 @@ public class Controller implements Initializable {
     private ProgressBar bar;
 
     public TreeView<String> treeView;
-    private String selected;
     private String ItemName;
     private HashSet<String> set;
     private HashMap<String, String> map;
     private ObservableList<Data> list;
+    private MenuBar menuBar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        menuBar = new MenuBar();
+        Menu fileMenu = new Menu("File");
+        Menu helpMenu = new Menu("Help");
+        menuBar.getMenus().addAll(fileMenu, helpMenu);
+        bp.setTop(menuBar);
+
         map = new HashMap<>();
         list = FXCollections.observableArrayList();
         String name = "computer";
@@ -78,35 +86,63 @@ public class Controller implements Initializable {
         } catch (Exception e) {
 
         }
+        TableView<Data> tableView = new TableView<>();
         bar.prefWidthProperty().bind(bp.widthProperty());
         //Name Column
         TableColumn<Data, String> nameColumn = new TableColumn<>("FileName");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setPrefWidth(200);
+        nameColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(350.0/833.0));
 
-        //FilePath Column
-        TableColumn<Data, String> filePathC = new TableColumn<>("Path");
-        filePathC.setCellValueFactory(new PropertyValueFactory<>("fullPath"));
-        filePathC.setPrefWidth(300);
+        //Input Format Column
+        TableColumn<Data, String> inputFormatColumn = new TableColumn<>("Input Format");
+        inputFormatColumn.setCellValueFactory(new PropertyValueFactory<>("inputFormat"));
+        inputFormatColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(151.0/833.0));
 
-        //Format Column
-        TableColumn<Data, String> formatColumn = new TableColumn<>("Input Format");
-        formatColumn.setCellValueFactory(new PropertyValueFactory<>("format"));
-        formatColumn.setPrefWidth(150);
+        //Input Format Column
+        TableColumn<Data, String> outputFormatColumn = new TableColumn<>("Output Format");
+        outputFormatColumn.setCellValueFactory(new PropertyValueFactory<>("outputFormat"));
+        outputFormatColumn.prefWidthProperty().bind(tableView.widthProperty().multiply(150.0/833.0));
 
         TableColumn<Data, String> percentageDone = new TableColumn<>("Percentage Converted");
         percentageDone.setCellValueFactory(new PropertyValueFactory<>("done"));
-        percentageDone.setPrefWidth(170);
+        percentageDone.prefWidthProperty().bind(tableView.widthProperty().multiply(182.0/833.0));
 
-        TableView<Data> tableView = new TableView<>();
         tableView.setItems(list);
-        tableView.getColumns().addAll(nameColumn, filePathC, formatColumn, percentageDone);
+        tableView.getColumns().addAll(nameColumn, inputFormatColumn,outputFormatColumn , percentageDone);
         tableView.setOnMousePressed(e -> {
             if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
                 set.remove(tableView.getSelectionModel().getSelectedItem().getFullPath());
                 list.remove(tableView.getSelectionModel().getSelectedItem());
+            }else if(e.isPrimaryButtonDown()){
+                Data selectedRow = tableView.getSelectionModel().getSelectedItem();
+                if(selectedRow!=null && selectedRow.isExtensionSet()){
+                    group.selectToggle(selectedRow.getSelectedToggle());
+                }else{
+                    group.selectToggle(null);
+                }
             }
         });
+        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                if (newValue != null) {
+                    String extracted = newValue.toString();
+                    Pattern togglePattern = Pattern.compile("'(\\w+)'");
+                    Matcher matcherToggle = togglePattern.matcher(extracted);
+                    if (matcherToggle.find()) {
+                        extracted = matcherToggle.group(1);
+                    }
+                    if (tableView.getSelectionModel().getSelectedItem() == null) {
+                        System.out.println("Please select an item");
+                    } else {
+                        tableView.getSelectionModel().getSelectedItem().setOutputFormat(extracted);
+                        tableView.getSelectionModel().getSelectedItem().setSelectedToggle(newValue);
+                        tableView.refresh();
+                    }
+                }
+            }
+        });
+        tableView.setPlaceholder(new Label("Drag and Drop files here, or choose them from the Slick File Explorer on the left.\n"));
         tableView.setOnDragOver(e -> {
             if (e.getDragboard().hasFiles()) {
                 e.acceptTransferModes(TransferMode.ANY);
@@ -160,17 +196,18 @@ public class Controller implements Initializable {
 
 
         });
-        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle old, Toggle newT) {
-                selected = (newT.toString().replaceAll(".*'(.*)'", "$1"));
-            }
-        });
 
         convertBut.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (selected != null) {
+                boolean selected = true;
+                for(Data d: list){
+                    if(!d.isExtensionSet()) {
+                        selected = false;
+                        break;
+                    }
+                }
+                if (selected) {
                     try {
                         List<Integer> durationList = new ArrayList<>();
                         AtomicInteger totalDuration = new AtomicInteger(0);
@@ -181,7 +218,7 @@ public class Controller implements Initializable {
                             String extension = ItemName.replaceAll(".*(\\..*)", "$1");
                             ItemName = ItemName.replace(extension, "");
                             ItemName = ItemName + "1";
-                            ItemName = "\"" + ItemName + "." + selected + "\"";
+                            ItemName = "\"" + ItemName + "." + data.getOutputFormat() + "\"";
                             FilePath = "\"" + FilePath + "\"";
 
                             Process p = new ProcessBuilder("cmd", "/c", "ffmpeg", "-i", FilePath).start();
@@ -209,8 +246,20 @@ public class Controller implements Initializable {
                                     ItemName = map.get(FilePath);
                                     String extension = ItemName.replaceAll(".*(\\..*)", "$1");
                                     ItemName = ItemName.replace(extension, "");
-                                    ItemName = ItemName + "1";
-                                    ItemName = "\"" + ItemName + "." + selected + "\"";
+                                    String tempOutputName = ItemName;
+                                    ItemName = "\"" + ItemName + "." + data.getOutputFormat() + "\"";
+                                    int fileIndex = 0;
+                                    while(true) {
+                                        File outputFile = new File(ItemName.replace("\"", ""));
+                                        if (outputFile.exists()) {
+                                            ItemName = tempOutputName + "_copy_"+ fileIndex;
+                                            ItemName = "\"" + ItemName + "." + data.getOutputFormat() + "\"";
+                                            fileIndex++;
+                                        }else{
+                                            System.out.println("Breaking!");
+                                            break;
+                                        }
+                                    }
                                     FilePath = "\"" + FilePath + "\"";
                                     Process d = null;
                                     try {
@@ -232,7 +281,31 @@ public class Controller implements Initializable {
                                 doneBefore += durationList.get(i);
                                 }
                                 convertBut.setDisable(false);
+                                set.clear();
+                                map.clear();
                                 list.clear();
+                                group.selectToggle(null);
+                                bar.setProgress(0);
+                                tableView.refresh();
+                                SystemTray tray = SystemTray.getSystemTray();
+
+                                //If the icon is a file
+//                                Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+                                //Alternative (if the icon is on the classpath):
+                                Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
+//
+                                TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+//                                //Let the system resize the image if needed
+                                trayIcon.setImageAutoSize(true);
+                                //Set tooltip text for the tray icon
+                                trayIcon.setToolTip("SlickConverter");
+                                try {
+                                    tray.add(trayIcon);
+                                } catch (AWTException e) {
+                                    e.printStackTrace();
+                                }
+
+                                trayIcon.displayMessage("Yours files have been converted successfully", "Slick Converter", TrayIcon.MessageType.INFO);
                             }
                         });
                         backgroundThread.start();
@@ -255,7 +328,6 @@ public class Controller implements Initializable {
                     public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean
                             newValue) {
                         presRatio.setDisable(!presRatio.isDisable());
-                        frameRate.setDisable(!frameRate.isDisable());
                         height.setDisable(!height.isDisable());
                         width.setDisable(!width.isDisable());
                     }

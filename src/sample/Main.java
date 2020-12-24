@@ -14,6 +14,9 @@ public class Main extends Application {
         primaryStage.setTitle("Slick Convert");
         primaryStage.setScene(new Scene(root, 1366, 768));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e->{
+            System.exit(0);
+        });
     }
 
 
