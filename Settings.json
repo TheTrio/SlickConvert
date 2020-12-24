@@ -1,5 +1,5 @@
 {
   "theme": "Light",
-  "multipleThreading" : "Disabled",
+  "multipleThreading" : "Enabled",
   "saveTo": "C:\\Users\\Shashwat\\Desktop"
 }

@@ -256,7 +256,7 @@ public class Controller implements Initializable {
                     else if (checkInput(endMin.getCharacters())) errorAlert.show();
                     else if (checkInput(endSec.getCharacters())) errorAlert.show();
                     else {
-                        if (width.getCharacters().length() == 0 && !presRatio.isSelected()) {
+                        if (width.getCharacters().length() == 0 && !presRatio.isSelected() && !inputSetting.isSelected()) {
                             errorAlert.setAlertType(Alert.AlertType.ERROR);
                             errorAlert.setContentText("Please enter a valid value for width. To set it automatically, enable Preserve Ratio");
                             errorAlert.setTitle("SlickConvert");
