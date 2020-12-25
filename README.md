@@ -20,7 +20,9 @@ SlickConvert requires [Java 8](https://www.oracle.com/java/technologies/javase-j
 
 ## Which OS does it run on
 
-Currently, SlickConvert only supports Windows - anything above Vista should be fine. In the future, it might be expanded for Linux and Mac. 
+Currently, SlickConvert only supports Windows - anything above Vista should be fine, although Windows 10 is recommended to make use of all of SlickConvert's features. 
+
+In the future, SlickConvert might be expanded for Linux and Mac. 
 
 ## Where to contact us
 
