@@ -14,6 +14,14 @@ Apart from being created using the JavaFX framework, SlickConvert uses a variety
 2. [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
 3. [JFoenix](http://jfoenix.com/) - JFoenix is an open source java library, that implements Google Material Design using java components.
 
+## Is SlickConvert ready for consumer use
+
+At present, SlickConvert is not for consumer use. It's still in its development phase, and several bugs are to be expected. 
+
+## When will SlickConvert be released for the public
+
+There is no fixed timeline for the release of SlickConvert. However, we're hoping to release SlickConvert for the public in the first week of January 2021
+
 ## Which version of Java do I need
 
 SlickConvert requires [Java 8](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) in order to run properly. Versions below or above 8 are not expected to run because of structural changes in the JRE(Java Runtime Environment). 
