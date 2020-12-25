@@ -16,7 +16,7 @@ Apart from being created using the JavaFX framework, SlickConvert uses a variety
 
 ## Which version of Java do I need
 
-SlickConvert is requires [Java 8](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) in order to run properly. Versions below or above 8 are not expected to run because of structural changes in the JRE(Java Runtime Environment). 
+SlickConvert requires [Java 8](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) in order to run properly. Versions below or above 8 are not expected to run because of structural changes in the JRE(Java Runtime Environment). 
 
 ## Which OS does it run on
 
