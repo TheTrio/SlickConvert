@@ -6,6 +6,10 @@
 
 SlickConvert is a quick and easy way to convert your video and audio files. Just drag your files, choose the output format, and click Convert. That's literally it. 
 
+## Why SlickConvert
+
+Despite the market being full of several video/audio converters, there is a serious lack of software which is both powerfull and easy to use. SlickConvert provides users with all the features they need without overwhelming them. This makes SlickConvert perfect for everyday users who're not looking for very advanced features.
+
 ## What does it use
 
 Apart from being created using the JavaFX framework, SlickConvert uses a variety of other libraries and software in order to make the best product possible. These are listed below 
