@@ -8,7 +8,7 @@ SlickConvert is a quick and easy way to convert your video and audio files. Just
 
 ## Why SlickConvert
 
-Despite the market being full of several video/audio converters, there is a serious lack of software which is both powerfull and easy to use. SlickConvert provides users with all the features they need without overwhelming them. This makes SlickConvert perfect for everyday users who're not looking for very advanced features.
+Despite the market being full of several video/audio converters, there is a serious lack of software which is both powerful and easy to use. SlickConvert provides users with all the features they need without overwhelming them. This makes SlickConvert perfect for everyday users who're not looking for very advanced features.
 
 ## What does it use
 
