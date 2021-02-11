@@ -24,7 +24,7 @@ At present, SlickConvert is not for consumer use. It's still in its development 
 
 ## When will SlickConvert be released for the public
 
-There is no fixed timeline for the release of SlickConvert. However, we're hoping to release SlickConvert for the public in the first week of January 2021
+There is no fixed timeline for the release of SlickConvert. However, we're hoping to release SlickConvert for the public by the end of 2021. 
 
 ## Which version of Java do I need
 
