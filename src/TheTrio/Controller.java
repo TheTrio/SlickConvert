@@ -290,6 +290,7 @@ public class Controller implements Initializable {
                                         Matcher matcher = null;
 
                                         while ((string = b.readLine()) != null) {
+                                            System.out.println(string);
                                             matcher = pattern.matcher(string);
                                             if (matcher.find()) {
                                                 totalDuration.getAndAdd(Integer.parseInt(matcher.group(1)) * 3600 + Integer.parseInt(matcher.group(2)) * 60 + Integer.parseInt(matcher.group(3)));
@@ -298,6 +299,7 @@ public class Controller implements Initializable {
                                             }
                                         }
                                     }
+                                    System.out.println(durationList);
                                     Thread backgroundThread = new Thread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -306,6 +308,8 @@ public class Controller implements Initializable {
                                                 Data data = list.get(i);
                                                 String FilePath = data.getFullPath();
                                                 ItemName = map.get(FilePath);
+                                                String ItemNamePath = FilePath.replace(ItemName, "");
+                                                System.out.println("Path" + ItemNamePath);
                                                 String extension = ItemName.replaceAll(".*(\\..*)", "$1");
                                                 ItemName = ItemName.replace(extension, "");
                                                 String tempOutputName = ItemName;
@@ -322,6 +326,7 @@ public class Controller implements Initializable {
                                                         break;
                                                     }
                                                 }
+
                                                 FilePath = "\"" + FilePath + "\"";
                                                 Process d = null;
                                                 String scaleMode = "scale=";
@@ -337,7 +342,9 @@ public class Controller implements Initializable {
                                                     }
                                                 }
                                                 try {
-                                                    d = new ProcessBuilder("cmd", "/c", "ffmpeg", "-i", FilePath, "-vf", scaleMode, ItemName).start();
+                                                    String outputFileFullPath = ItemName.replace("\"", "");
+                                                    outputFileFullPath = "\"" + ItemNamePath + outputFileFullPath + "\"";
+                                                    d = new ProcessBuilder("cmd", "/c", "ffmpeg", "-i", FilePath, "-vf", scaleMode, outputFileFullPath).start();
                                                 } catch (IOException e) {
                                                     e.printStackTrace();
                                                 }
