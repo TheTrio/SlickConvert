@@ -10,6 +10,8 @@ SlickConvert is a quick and easy way to convert your video and audio files. Just
 
 Despite the market being full of several video/audio converters, there is a serious lack of software which is both powerful and easy to use. SlickConvert provides users with all the features they need without overwhelming them. This makes SlickConvert perfect for everyday users who're not looking for very advanced features.
 
+At the same time, SlickConvert is capable of handling multiple threads at the same time. Depending on your machine, this might reduce convertion time by a large factor.
+
 ## What does it use
 
 Apart from being created using the JavaFX framework, SlickConvert uses a variety of other libraries and software in order to make the best product possible. These are listed below 
@@ -18,14 +20,6 @@ Apart from being created using the JavaFX framework, SlickConvert uses a variety
 2. [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
 3. [JFoenix](http://jfoenix.com/) - JFoenix is an open source java library, that implements Google Material Design using java components.
 
-## Is SlickConvert ready for consumer use
-
-At present, SlickConvert is not for consumer use. It's still in its development phase, and several bugs are to be expected. 
-
-## When will SlickConvert be released for the public
-
-There is no fixed timeline for the release of SlickConvert. However, we're hoping to release SlickConvert for the public by the end of 2021. 
-
 ## Which version of Java do I need
 
 SlickConvert requires [Java 8](https://www.oracle.com/java/technologies/javase-jre8-downloads.html) in order to run properly. Versions below or above 8 are not expected to run because of structural changes in the JRE(Java Runtime Environment). 
@@ -33,9 +27,3 @@ SlickConvert requires [Java 8](https://www.oracle.com/java/technologies/javase-j
 ## Which OS does it run on
 
 Currently, SlickConvert only supports Windows - anything above Vista should be fine, although Windows 10 is recommended to make use of all of SlickConvert's features. 
-
-In the future, SlickConvert might be expanded for Linux and Mac. 
-
-## Where to contact us
-
-You can raise issues on Github to make us aware of your suggestions. You can also email us at shashwatkhanna312@gmail.com
