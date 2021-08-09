@@ -44,6 +44,7 @@ public class Converter implements Runnable{
         String s;
         try {
             while((s=b.readLine())!=null){
+                System.out.println(s);
                 if(isTrue){
                     return;
                 }
@@ -63,6 +64,9 @@ public class Converter implements Runnable{
                 }
             }
             System.out.println(Item + " completed");
+            Platform.runLater(()->{
+                progressBar.setProgress(1);
+            });
             noOfThreads--;
             if(noOfThreads==0){
                 noOfThreads = -1;

@@ -16,6 +16,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
@@ -344,13 +345,18 @@ public class Controller implements Initializable {
                                                 try {
                                                     String outputFileFullPath = ItemName.replace("\"", "");
                                                     outputFileFullPath = "\"" + ItemNamePath + outputFileFullPath + "\"";
-                                                    d = new ProcessBuilder("cmd", "/c", "ffmpeg", "-i", FilePath, "-vf", scaleMode, outputFileFullPath).start();
+                                                    if(data.getEndTime()!=null){
+                                                        d = new ProcessBuilder("cmd", "/c", "ffmpeg","-ss",data.getStartTime(),"-i", FilePath,"-to",data.getEndTime(), "-vf", scaleMode, outputFileFullPath).start();
+                                                    }else{
+                                                        d = new ProcessBuilder("cmd", "/c", "ffmpeg","-ss",data.getStartTime(),"-i", FilePath, "-vf", scaleMode, outputFileFullPath).start();
+                                                    }
                                                 } catch (IOException e) {
                                                     e.printStackTrace();
                                                 }
                                                 BufferedReader b = new BufferedReader(new InputStreamReader(d.getErrorStream()));
                                                 Pattern pattern = Pattern.compile("time=(\\d\\d):(\\d\\d):(\\d\\d)\\.\\d\\d");
-                                                Converter c = new Converter(b, pattern, durationList.get(i), bar, ItemName, data, tableView, totalDuration.get(), doneBefore);
+
+                                                Converter c = new Converter(b, pattern, timeToSeconds(data)==-1?durationList.get(i): timeToSeconds(data), bar, ItemName, data, tableView, totalDuration.get(), doneBefore);
                                                 Thread thread = new Thread(c);
                                                 thread.start();
                                                 if (!multipleThreads) {
@@ -413,6 +419,16 @@ public class Controller implements Initializable {
 
     }
 
+    private int timeToSeconds(Data data) {
+        if(data.getEndTime()==null){
+            return -1;
+        }
+        int endTimeInSeconds = -1;
+        String[] endTime = data.getEndTime().split(":");
+        endTimeInSeconds = Integer.parseInt(endTime[0])*3600 + Integer.parseInt(endTime[1])*60 + Integer.parseInt(endTime[2]);
+        return endTimeInSeconds;
+    }
+
     private void setUpTextFields() {
         width.setOnKeyTyped(e -> {
             if (!Character.isDigit(e.getCharacter().charAt(0))) {
@@ -431,57 +447,58 @@ public class Controller implements Initializable {
             }
         });
         startHour.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (startHour.getCharacters().length() > 1) {
-                e.consume();
-            }
+            startTimeJob(e, startHour);
+
         });
         endHour.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (endHour.getCharacters().length() > 1) {
-                e.consume();
-            }
+            endTimeJob(e, endHour);
         });
 
         startMin.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (startMin.getCharacters().length() > 1) {
-                e.consume();
-            }
+            startTimeJob(e, startMin);
         });
 
         endMin.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (endMin.getCharacters().length() > 1) {
-                e.consume();
-            }
+            endTimeJob(e, endMin);
         });
         startSec.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (startSec.getCharacters().length() > 1) {
-                e.consume();
-            }
+            startTimeJob(e, startSec);
         });
 
         endSec.setOnKeyTyped(e -> {
-            if (!Character.isDigit(e.getCharacter().charAt(0))) {
-                e.consume();
-            }
-            if (endSec.getCharacters().length() > 1) {
-                e.consume();
-            }
+            endTimeJob(e, endSec);
         });
 
+    }
+
+    private void endTimeJob(KeyEvent e, JFXTextField timeField) {
+        if (!Character.isDigit(e.getCharacter().charAt(0))) {
+            e.consume();
+        } else if (timeField.getCharacters().length() > 1) {
+            e.consume();
+        } else {
+            updateEndTime();
+        }
+    }
+
+    private void startTimeJob(KeyEvent e, JFXTextField timeField) {
+        if (!Character.isDigit(e.getCharacter().charAt(0))) {
+            e.consume();
+        } else if (timeField.getCharacters().length() > 1) {
+            e.consume();
+        } else {
+            updateStartTime();
+        }
+    }
+
+    private void updateEndTime() {
+        Data selectedItem = tableView.getSelectionModel().getSelectedItem();
+        selectedItem.setEndTime((endHour.getText().equals("")?"00":endHour.getText()) +":"+ (endMin.getText().equals("")?"00":endMin.getText())+":" + (endSec.getText().equals("")?"00":endSec.getText()));
+    }
+
+    private void updateStartTime() {
+        Data selectedItem = tableView.getSelectionModel().getSelectedItem();
+        selectedItem.setStartTime((startHour.getText().equals("")?"00":startHour.getText()) +":"+ (startMin.getText().equals("")?"00":startMin.getText())+":" + (startSec.getText().equals("")?"00":startSec.getText()));
     }
 
     private boolean checkInput(CharSequence characters) {

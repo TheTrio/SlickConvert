@@ -9,6 +9,8 @@ public class Data {
     private String fullPath;
     private String done;
     private Toggle selectedToggle;
+    private String startTime;
+    private String endTime;
 
     public Data(String name, String fullPath, String format) {
         this.name = name;
@@ -17,6 +19,8 @@ public class Data {
         this.done = "Not started";
         this.outputFormat = "Not selected";
         this.selectedToggle = null;
+        this.startTime = "00:00:00";
+        this.endTime = null;
     }
 
     public Data() {
@@ -74,5 +78,21 @@ public class Data {
 
     public void setSelectedToggle(Toggle selectedToggle) {
         this.selectedToggle = selectedToggle;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }
